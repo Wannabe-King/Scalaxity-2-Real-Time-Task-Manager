@@ -21,26 +21,32 @@ class TaskProvider extends ChangeNotifier {
   final String apiUrl = 'https://scalaxity-be.onrender.com/tasks';
 
   Future<void> addTask(Task task) async {
+    // Add to backend
     await http.post(
       Uri.parse(apiUrl),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(task.toMap()),
     );
-    // Firestore listener will update tasks automatically
+    // Add to Firestore
+    await _db.collection('tasks').add(task.toMap());
   }
 
   Future<void> updateTask(Task task) async {
     if (task.id == null) return;
+    // Update backend
     await http.put(
       Uri.parse('$apiUrl/${task.id}'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(task.toMap()),
     );
-    // Firestore listener will update tasks automatically
+    // Update Firestore
+    await _db.collection('tasks').doc(task.id).update(task.toMap());
   }
 
   Future<void> deleteTask(String id) async {
+    // Delete from backend
     await http.delete(Uri.parse('$apiUrl/$id'));
-    // Firestore listener will update tasks automatically
+    // Delete from Firestore
+    await _db.collection('tasks').doc(id).delete();
   }
 }
