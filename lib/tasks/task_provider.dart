@@ -17,8 +17,8 @@ class TaskProvider extends ChangeNotifier {
     });
   }
 
-  // Replace with your backend API URL
-  final String apiUrl = 'https://your-backend.com/api/tasks';
+  // Backend API base URL
+  final String apiUrl = 'https://scalaxity-be.onrender.com/tasks';
 
   Future<void> addTask(Task task) async {
     await http.post(
