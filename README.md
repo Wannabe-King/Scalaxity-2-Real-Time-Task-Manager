@@ -8,7 +8,6 @@ A real-time collaborative task manager built with Flutter.
 - View tasks in a list format
 - Real-time sync using Firestore
 - Backend REST API for saving/loading tasks
-- (Optional) Collaborative task lists and push notifications
 
 ## Architecture
 
