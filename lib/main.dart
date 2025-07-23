@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'auth/auth_provider.dart';
 import 'auth/auth_screen.dart';
 import 'tasks/task_list_screen.dart';
+import 'tasks/task_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        // Add TaskProvider later
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
       ],
       child: MaterialApp(
         title: 'Real-Time Task Manager',
